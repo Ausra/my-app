@@ -5,9 +5,7 @@ import dts from "rollup-plugin-dts";
 
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
-const packageJson = require('./package.json');
-
-import postcss from "rollup-plugin-postcss";
+const packageJson = require("./package.json");
 
 export default [
   {
@@ -28,14 +26,11 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
-      postcss(), 
     ],
   },
   {
-    input: "dist/esm/components/index.d.ts",
+    input: "dist/esm/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts()],
-
-    external: [/\.css$/],
   },
 ];
